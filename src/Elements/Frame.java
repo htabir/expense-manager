@@ -24,7 +24,7 @@ public class Frame extends JFrame {
         setIconImage(icon);
 
         JButton close_button = new JButton("×");
-        close_button.setBounds(930, 0, 30, 40);
+        close_button.setBounds(930, 0, 30, 56);
         close_button.setMargin(new Insets(0, 0, 0, 0));
         close_button.setForeground(new Color(175, 175, 175));
         styles.transparentButton(close_button, styles.SEMIBOLD, 22);
@@ -43,7 +43,7 @@ public class Frame extends JFrame {
         });
 
         JButton minimize_button = new JButton("-");
-        minimize_button.setBounds(900, 0, 30, 40);
+        minimize_button.setBounds(900, 0, 30, 56);
         minimize_button.setMargin(new Insets(0, 0, 0, 0));
         minimize_button.setForeground(new Color(175, 175, 175));
         styles.transparentButton(minimize_button, styles.SEMIBOLD, 22);
@@ -60,8 +60,9 @@ public class Frame extends JFrame {
 //                minimize_button.setFont(new FontHelper(styles.BLACK, 22));
             }
         });
+    }
 
-
+    public void makeDraggable(){
         JPanel drag_bar = new JPanel();
         add(drag_bar);
         drag_bar.setBackground(new Color(0, 0, 0, 0));
@@ -96,4 +97,5 @@ public class Frame extends JFrame {
             frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
         }
     }
+
 }

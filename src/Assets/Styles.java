@@ -25,6 +25,7 @@ public class Styles {
     public static final Color muted = new Color(128, 140, 167);
     public static final Color typo = new Color(0, 0, 0);
     public static final Color grey = new Color(233, 233, 233);
+    public static final Color white = new Color(255, 255, 255);
 
     // Labels
 

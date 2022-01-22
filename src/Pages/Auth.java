@@ -21,6 +21,7 @@ public class Auth {
         img.setBounds(0, 0, 560, 640);
         frame.add(img);
 
+        frame.makeDraggable();
         frame.setVisible(true);
     }
 }

@@ -26,6 +26,8 @@ public class Styles {
     public static final Color typo = new Color(0, 0, 0);
     public static final Color grey = new Color(233, 233, 233);
     public static final Color white = new Color(255, 255, 255);
+    public static final Color green = new Color(76, 187, 23);
+    public static final Color red = new Color(255, 0, 56);
 
     // Labels
 

@@ -1,5 +1,7 @@
 package Elements;
 
+import Assets.Styles;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +22,7 @@ public class ImagePanel extends JPanel {
         } catch (IOException ex) {
             // something
         }
+        setBackground(new Styles().white);
     }
 
     @Override

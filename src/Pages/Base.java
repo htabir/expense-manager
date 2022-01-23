@@ -12,6 +12,10 @@ public class Base {
         frame.add(navbar);
         navbar.setBounds(0, 0, 960, 60);
 
+        Dashboard dashboard = new Dashboard();
+        frame.add(dashboard);
+        dashboard.setBounds(0, 64, 960, 576);
+
         frame.makeDraggable();
         frame.setVisible(true);
     }

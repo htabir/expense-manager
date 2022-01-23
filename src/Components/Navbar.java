@@ -1,12 +1,13 @@
 package Components;
 
 import Assets.Styles;
+import Cache.Root;
 import Elements.ImagePanel;
 
 import javax.swing.*;
 
 public class Navbar extends JPanel {
-    public Navbar(){
+    public Navbar(Root root){
         Styles styles = new Styles();
         setLayout(null);
         setBackground(styles.white);

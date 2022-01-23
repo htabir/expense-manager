@@ -1,13 +1,15 @@
 package Pages;
 
 import Assets.Styles;
+import Cache.Root;
 import Components.AccountCard;
 import Components.CashFlowCard;
+import Components.RecentRecordsCard;
 
 import javax.swing.*;
 
 public class Dashboard extends JPanel {
-    public Dashboard(){
+    public Dashboard(Root root){
         Styles styles = new Styles();
         setLayout(null);
         setBackground(styles.background);
@@ -28,5 +30,9 @@ public class Dashboard extends JPanel {
         CashFlowCard cashFlowCard = new CashFlowCard();
         add(cashFlowCard);
         cashFlowCard.setBounds(24, 128, 444, 296);
+
+        RecentRecordsCard recentRecordsCard = new RecentRecordsCard();
+        add(recentRecordsCard);
+        recentRecordsCard.setBounds(492, 128, 444, 296);
     }
 }

@@ -1,9 +1,10 @@
 package Cache;
 
 public class User {
-    private int user_id;
-    private String  email;
-    private boolean authenticated;
+    public int id;
+    public String  name;
+    public String  email;
+    public boolean authenticated;
 
     public User(){
         authenticated = false;

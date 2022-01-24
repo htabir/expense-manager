@@ -9,8 +9,10 @@ import javax.swing.*;
 public class Login extends JPanel {
     public JButton login, sign_in;
     private Input email, password;
-    public Login(Root root){
-        Styles styles = new Styles();
+    Styles styles;
+
+    public Login(Root root) {
+        styles = new Styles();
         setLayout(null);
         setBackground(styles.background);
 
@@ -53,7 +55,13 @@ public class Login extends JPanel {
         });
     }
 
-    public void tryLogin(Root root){
+    public void tryLogin(Root root) {
         root.dbConnect.login(root, email.getText(), password.getPassword());
+    }
+
+    public void setDanger() {
+        email.setDanger();
+        password.setDanger();
+
     }
 }

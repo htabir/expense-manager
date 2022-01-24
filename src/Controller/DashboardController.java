@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DashboardController {
     public DashboardController(Root root) {
+        root.dbConnect = new DbConnect();
         root.dash.cash = countTotalCash(root);
         root.dash.bank = countTotalBank(root);
         root.dash.mobile = countTotalMobile(root);

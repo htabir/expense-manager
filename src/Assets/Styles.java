@@ -80,10 +80,16 @@ public class Styles {
 
     public void defaultInputField(JPasswordField passwordField) {
         passwordField.setBorder(new LineBorder(this.grey));
+        passwordField.setBorder(BorderFactory.createCompoundBorder(
+                passwordField.getBorder(),
+                BorderFactory.createEmptyBorder(0, 8, 0, 8)));
     }
 
     public void dangerInputField(JPasswordField passwordField) {
         passwordField.setBorder(new LineBorder(new Color(255, 0, 0)));
+        passwordField.setBorder(BorderFactory.createCompoundBorder(
+                passwordField.getBorder(),
+                BorderFactory.createEmptyBorder(0, 8, 0, 8)));
     }
 
 }

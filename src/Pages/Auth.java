@@ -24,7 +24,10 @@ public class Auth {
                 if(root.user.isAuthenticated()){
                     new Base(root);
                     frame.dispose();
+                }else{
+                    loginPanel.setDanger();
                 }
+
             }
         });
 

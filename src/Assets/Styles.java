@@ -56,6 +56,14 @@ public class Styles {
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    public void setInactive(JButton button){
+        this.transparentButton(button, this.LIGHT, 16);
+    }
+
+    public void setActive(JButton button){
+        this.transparentButton(button, this.MEDIUM, 16);
+    }
+
     // Input
 
     public void passwordFieldStyling(JPasswordField passwordField, Color color, int weight, int size) {

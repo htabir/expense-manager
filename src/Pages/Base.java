@@ -4,6 +4,8 @@ import Cache.Root;
 import Components.Navbar;
 import Elements.Frame;
 
+import javax.swing.*;
+
 public class Base {
     public Base(Root root) {
         Frame frame = new Frame();
@@ -18,5 +20,9 @@ public class Base {
 
         frame.makeDraggable();
         frame.setVisible(true);
+    }
+
+    public void navigate(Navbar navbar, JButton button){
+
     }
 }

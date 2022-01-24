@@ -9,12 +9,12 @@ public class AccountCard extends JPanel {
     private String[] icons = {"cash.png", "bank.png", "mobile.png"};
     private String[] titles = {"Cash", "Bank", "Mobile Banking"};
 
-    public AccountCard(int type){
+    public AccountCard(int type, int total){
         Styles styles = new Styles();
         setLayout(null);
         setBackground(styles.white);
 
-        JLabel amount = new JLabel("5458");
+        JLabel amount = new JLabel(String.valueOf(total));
         styles.labelStyling(amount, styles.typo, styles.SEMIBOLD, 32);
         add(amount);
         amount.setBounds(16, 8, 180, 40);

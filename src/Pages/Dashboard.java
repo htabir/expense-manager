@@ -10,23 +10,24 @@ import Controller.DashboardController;
 import javax.swing.*;
 
 public class Dashboard extends JPanel {
+    AccountCard card1, card2, card3;
     public Dashboard(Root root){
-        new DashboardController(root);
-
         Styles styles = new Styles();
         setLayout(null);
         setBackground(styles.background);
         setSize(960, 576);
 
-        AccountCard card1 = new AccountCard(0, root.dash.cash);
+        new DashboardController(root);
+
+        card1 = new AccountCard(0, root.dash.cash);
         add(card1);
         card1.setBounds(24, 24, 288, 80);
 
-        AccountCard card2 = new AccountCard(1, root.dash.bank);
+        card2 = new AccountCard(1, root.dash.bank);
         add(card2);
         card2.setBounds(336, 24, 288, 80);
 
-        AccountCard card3 = new AccountCard(2, root.dash.mobile);
+        card3 = new AccountCard(2, root.dash.mobile);
         add(card3);
         card3.setBounds(648, 24, 288, 80);
 

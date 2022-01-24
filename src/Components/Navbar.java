@@ -19,24 +19,24 @@ public class Navbar extends JPanel {
         logo.setBackground(styles.white);
 
         dashboard = new JButton("Dashboard");
-        styles.transparentButton(dashboard, styles.MEDIUM, 16);
+        styles.transparentButton(dashboard, styles.typo, styles.MEDIUM, 16);
         add(dashboard);
         dashboard.setBounds(92, 0, 116, 64);
 
         accounts = new JButton("Accounts");
-        styles.transparentButton(accounts, styles.LIGHT, 16);
+        styles.transparentButton(accounts, styles.muted, styles.LIGHT, 16);
         accounts.setForeground(styles.muted);
         add(accounts);
         accounts.setBounds(210, 0, 100, 64);
 
         records = new JButton("Records");
-        styles.transparentButton(records, styles.LIGHT, 16);
+        styles.transparentButton(records, styles.muted, styles.LIGHT, 16);
         records.setForeground(styles.muted);
         add(records);
         records.setBounds(310, 0, 96, 64);
 
         analytics = new JButton("Analytics");
-        styles.transparentButton(analytics, styles.LIGHT, 16);
+        styles.transparentButton(analytics, styles.muted,  styles.LIGHT, 16);
         analytics.setForeground(styles.muted);
         add(analytics);
         analytics.setBounds(310+96+2, 0, 100, 64);

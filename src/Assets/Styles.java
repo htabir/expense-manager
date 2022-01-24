@@ -38,7 +38,7 @@ public class Styles {
 
     // Buttons
 
-    public void transparentButton(JButton button, int weight, int size) {
+    public void transparentButton(JButton button, Color foreground, int weight, int size) {
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setHorizontalAlignment(SwingConstants.LEFT);
@@ -46,6 +46,7 @@ public class Styles {
         button.setFocusPainted(false);
         button.setFont(new FontHelper(weight, size));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.setForeground(foreground);
     }
 
     public void buttonStyling(JButton button, int weight, int size) {
@@ -56,12 +57,13 @@ public class Styles {
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    public void setInactive(JButton button){
-        this.transparentButton(button, this.LIGHT, 16);
+    public void setInactive(JButton button) {
+        this.transparentButton(button, this.muted, this.LIGHT, 16);
     }
 
-    public void setActive(JButton button){
-        this.transparentButton(button, this.MEDIUM, 16);
+    public void setActive(JButton button) {
+        this.transparentButton(button, this.typo, this.MEDIUM, 16);
+
     }
 
     // Input
@@ -69,18 +71,18 @@ public class Styles {
     public void passwordFieldStyling(JPasswordField passwordField, Color color, int weight, int size) {
         passwordField.setFont(new FontHelper(weight, size));
         passwordField.setForeground(color);
-        passwordField.setBackground(this.grey );
+        passwordField.setBackground(this.grey);
         defaultInputField(passwordField);
         passwordField.setBorder(BorderFactory.createCompoundBorder(
                 passwordField.getBorder(),
                 BorderFactory.createEmptyBorder(0, 8, 0, 8)));
     }
 
-    public void defaultInputField(JPasswordField passwordField){
+    public void defaultInputField(JPasswordField passwordField) {
         passwordField.setBorder(new LineBorder(this.grey));
     }
 
-    public void dangerInputField(JPasswordField passwordField){
+    public void dangerInputField(JPasswordField passwordField) {
         passwordField.setBorder(new LineBorder(new Color(255, 0, 0)));
     }
 

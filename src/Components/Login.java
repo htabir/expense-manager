@@ -2,7 +2,6 @@ package Components;
 
 import Assets.Styles;
 import Cache.Root;
-import Controller.DbConnect;
 import Elements.Input;
 
 import javax.swing.*;
@@ -39,7 +38,7 @@ public class Login extends JPanel {
         login.setBounds(0, 294, 326, 48);
 
         sign_in = new JButton("Create New Account.");
-        styles.transparentButton(sign_in, styles.LIGHT, 14);
+        styles.transparentButton(sign_in, styles.muted, styles.LIGHT, 14);
         add(sign_in);
         sign_in.setBounds(81, 500, 200, 20);
 
@@ -55,6 +54,6 @@ public class Login extends JPanel {
     }
 
     public void tryLogin(Root root){
-        new DbConnect().login(root, email.getText(), password.getPassword());
+        root.dbConnect.login(root, email.getText(), password.getPassword());
     }
 }

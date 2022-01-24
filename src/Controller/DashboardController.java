@@ -6,18 +6,17 @@ import java.sql.SQLException;
 
 public class DashboardController {
     public DashboardController(Root root) {
-        DbConnect dbConnect = new DbConnect();
-        root.dash.cash = countTotalCash(root.user.id, dbConnect);
-        root.dash.bank = countTotalBank(root.user.id, dbConnect);
-        root.dash.mobile = countTotalMobile(root.user.id, dbConnect);
+        root.dash.cash = countTotalCash(root);
+        root.dash.bank = countTotalBank(root);
+        root.dash.mobile = countTotalMobile(root);
     }
 
-    public int countTotalCash(int user, DbConnect dbConnect) {
+    public int countTotalCash(Root root) {
         int cash = 0;
         try {
-            dbConnect.resultSet = dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + user + " AND `category`='cash'");
-            while (dbConnect.resultSet.next()) {
-                cash += Integer.parseInt(dbConnect.resultSet.getString(5));
+            root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='cash'");
+            while (root.dbConnect.resultSet.next()) {
+                cash += Integer.parseInt(root.dbConnect.resultSet.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -25,12 +24,12 @@ public class DashboardController {
         return cash;
     }
 
-    public int countTotalBank(int user, DbConnect dbConnect) {
+    public int countTotalBank(Root root) {
         int bank = 0;
         try {
-            dbConnect.resultSet = dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + user + " AND `category`='bank'");
-            while (dbConnect.resultSet.next()) {
-                bank += Integer.parseInt(dbConnect.resultSet.getString(5));
+            root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='bank'");
+            while (root.dbConnect.resultSet.next()) {
+                bank += Integer.parseInt(root.dbConnect.resultSet.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,12 +37,12 @@ public class DashboardController {
         return bank;
     }
 
-    public int countTotalMobile(int user, DbConnect dbConnect) {
+    public int countTotalMobile(Root root) {
         int mobile = 0;
         try {
-            dbConnect.resultSet = dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + user + " AND `category`='mobile'");
-            while (dbConnect.resultSet.next()) {
-                mobile += Integer.parseInt(dbConnect.resultSet.getString(5));
+            root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='mobile'");
+            while (root.dbConnect.resultSet.next()) {
+                mobile += Integer.parseInt(root.dbConnect.resultSet.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();

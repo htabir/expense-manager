@@ -5,6 +5,7 @@ import Assets.Styles;
 import javax.swing.*;
 
 public class SideCard extends JPanel {
+    public JButton cash, bank, mobile;
     public SideCard(){
         Styles styles = new Styles();
         setLayout(null);
@@ -25,17 +26,17 @@ public class SideCard extends JPanel {
         add(filter);
         filter.setBounds(16, 144, 256, 20);
 
-        JButton cash = new JButton("Cash");
+        cash = new JButton("Cash");
         styles.transparentButton(cash, styles.typo, styles.LIGHT, 16);
         add(cash);
         cash.setBounds(0, 182, 308, 20);
 
-        JButton bank = new JButton("Bank");
+        bank = new JButton("Bank");
         styles.transparentButton(bank, styles.typo, styles.LIGHT, 16);
         add(bank);
         bank.setBounds(0, 222, 308, 20);
 
-        JButton mobile = new JButton("Mobile Banking");
+        mobile = new JButton("Mobile Banking");
         styles.transparentButton(mobile, styles.typo, styles.LIGHT, 16);
         add(mobile);
         mobile.setBounds(0, 262, 308, 20);

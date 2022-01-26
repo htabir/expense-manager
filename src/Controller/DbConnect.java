@@ -14,8 +14,12 @@ public class DbConnect {
 
     public DbConnect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://151.106.117.0:3306/u438744503_expenseManager", "u438744503_boruto", "Rasenshurik3n");
+            // Remote DB | Hostinger
+//            Class.forName("com.mysql.jdbc.Driver");
+//            connection = DriverManager.getConnection("jdbc:mysql://151.106.117.0:3306/u438744503_expenseManager", "u438744503_boruto", "Rasenshurik3n");
+            // Local DB | Xampp
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/expensemanager", "root", "");
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println("Connection Failed");

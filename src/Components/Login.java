@@ -21,13 +21,13 @@ public class Login extends JPanel {
         add(panel_header);
         panel_header.setBounds(0, 0, 326, 70);
 
-        email = new Input();
+        email = new Input(styles.grey);
         email.setWidth(326);
         email.setLabel("Email");
         add(email);
         email.setBounds(0, 102);
 
-        password = new Input();
+        password = new Input(styles.grey);
         password.setWidth(326);
         password.setLabel("Password");
         password.setType("password");

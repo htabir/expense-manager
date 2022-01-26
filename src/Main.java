@@ -6,5 +6,6 @@ public class Main {
 //        new DbConnect();
         Root root = new Root();
         new Auth(root);
+//        new Base(root);
     }
 }

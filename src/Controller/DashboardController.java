@@ -7,12 +7,12 @@ import java.sql.SQLException;
 public class DashboardController {
     public DashboardController(Root root) {
         root.dbConnect = new DbConnect();
-        root.dash.cash = countTotalCash(root);
-        root.dash.bank = countTotalBank(root);
-        root.dash.mobile = countTotalMobile(root);
+        countTotalCash(root);
+        countTotalBank(root);
+        countTotalMobile(root);
     }
 
-    public int countTotalCash(Root root) {
+    public void countTotalCash(Root root) {
         int cash = 0;
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='cash'");
@@ -22,10 +22,10 @@ public class DashboardController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return cash;
+        root.dash.cash = cash;
     }
 
-    public int countTotalBank(Root root) {
+    public void countTotalBank(Root root) {
         int bank = 0;
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='bank'");
@@ -35,10 +35,10 @@ public class DashboardController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bank;
+        root.dash.bank = bank;
     }
 
-    public int countTotalMobile(Root root) {
+    public void countTotalMobile(Root root) {
         int mobile = 0;
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='mobile'");
@@ -48,6 +48,6 @@ public class DashboardController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return mobile;
+        root.dash.mobile = mobile;
     }
 }

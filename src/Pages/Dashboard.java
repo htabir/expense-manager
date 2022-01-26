@@ -2,9 +2,9 @@ package Pages;
 
 import Assets.Styles;
 import Cache.Root;
-import Components.AccountCard;
-import Components.CashFlowCard;
-import Components.RecentRecordsCard;
+import Components.Dashboard.AccountCard;
+import Components.Dashboard.CashFlowCard;
+import Components.Dashboard.RecentRecordsCard;
 import Controller.DashboardController;
 
 import javax.swing.*;

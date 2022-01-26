@@ -10,9 +10,10 @@ public class Input extends JPanel{
     private JPasswordField field = new JPasswordField();
     private String type = "text";
     private int width = 100;
-    public Input(){
+    private Color background;
+    public Input(Color background){
         Styles styles = new Styles();
-
+        this.background = background;
         setLayout(null);
         setBackground(styles.background);
 
@@ -20,7 +21,7 @@ public class Input extends JPanel{
         add(label);
         label.setBounds(0, 0, width, 20);
 
-        styles.passwordFieldStyling(field, styles.typo, styles.REGULAR, 18);
+        styles.passwordFieldStyling(field, styles.typo, this.background, styles.REGULAR, 18);
         field.setEchoChar((char) 0);
         add(field);
         field.setBounds(0, 28, width, 48);
@@ -54,10 +55,10 @@ public class Input extends JPanel{
         this.type = type;
         if(type == "text"){
             field.setEchoChar((char) 0);
-            new Styles().passwordFieldStyling(field, new Styles().typo, Font.PLAIN, 18);
+            new Styles().passwordFieldStyling(field, new Styles().typo, this.background, Font.PLAIN, 18);
         }else if(type=="password"){
             field.setEchoChar('•');
-            new Styles().passwordFieldStyling(field, new Styles().typo, Font.BOLD, 18);
+            new Styles().passwordFieldStyling(field, new Styles().typo, this.background, Font.BOLD, 18);
         }
     }
 

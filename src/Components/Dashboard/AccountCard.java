@@ -1,4 +1,4 @@
-package Components;
+package Components.Dashboard;
 
 import Assets.Styles;
 import Elements.ImagePanel;

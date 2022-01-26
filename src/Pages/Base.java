@@ -29,6 +29,10 @@ public class Base {
         frame.add(dashboard);
         dashboard.setBounds(0, 64, 960, 576);
 
+//        accounts = new Accounts(root);
+//        frame.add(accounts);
+//        accounts.setBounds(0, 64, 960, 576);
+
         frame.makeDraggable();
         frame.setVisible(true);
     }

@@ -44,7 +44,7 @@ public class AccountList extends JPanel {
                 AccountItem item = new AccountItem(
                         root.accounts.list.getString(3),
                         root.accounts.list.getString(4),
-                        root.accounts.list.getString(5)
+                        root.accounts.list.getString(7)
                 );
                 list.add(item);
                 item.setBounds(0, pos, 600, 48);

@@ -6,21 +6,30 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Input extends JPanel{
-    private JLabel label = new JLabel("Label");
-    private JPasswordField field = new JPasswordField();
-    private String type = "text";
-    private int width = 100;
+    private JLabel label;
+    private JPasswordField field;
+    private String type;
+    private int width;
     private Color background;
     public Input(Color background){
         Styles styles = new Styles();
         this.background = background;
         setLayout(null);
-        setBackground(styles.background);
+        if(background == styles.background){
+            setBackground(styles.white);
+        }else {
+            setBackground(styles.background);
+        }
+        type = "text";
+        width = 100;
 
-        styles.labelStyling(label, styles.typo, styles.LIGHT, 14);
+
+        label = new JLabel("Label");
+        styles.labelStyling(label, styles.typo, styles.LIGHT, 16);
         add(label);
         label.setBounds(0, 0, width, 20);
 
+        field = new JPasswordField();
         styles.passwordFieldStyling(field, styles.typo, this.background, styles.REGULAR, 18);
         field.setEchoChar((char) 0);
         add(field);
@@ -77,4 +86,17 @@ public class Input extends JPanel{
     public void setDanger(){
         new Styles().dangerInputField(field);
     }
+
+    public void required(int x){
+        Styles styles = new Styles();
+        JLabel req = new JLabel("*");
+        styles.labelStyling(req, styles.red, styles.MEDIUM, 16);
+        this.add(req);
+        req.setBounds(x, 0, 8, 20);
+    }
+
+    public void setValue(String value){
+        field.setText(value);
+    }
+
 }

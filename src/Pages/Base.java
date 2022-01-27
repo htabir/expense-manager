@@ -23,7 +23,6 @@ public class Base {
         navbar = new Navbar(root);
         frame.add(navbar);
         navbar.setBounds(0, 0, 960, 60);
-        initActionListener(root);
 
         dashboard = new Dashboard(root);
         frame.add(dashboard);
@@ -32,6 +31,8 @@ public class Base {
 //        accounts = new Accounts(root);
 //        frame.add(accounts);
 //        accounts.setBounds(0, 64, 960, 576);
+
+        initActionListener(root);
 
         frame.makeDraggable();
         frame.setVisible(true);

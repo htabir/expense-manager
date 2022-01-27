@@ -17,7 +17,7 @@ public class DashboardController {
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='cash'");
             while (root.dbConnect.resultSet.next()) {
-                cash += Integer.parseInt(root.dbConnect.resultSet.getString(5));
+                cash += Integer.parseInt(root.dbConnect.resultSet.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class DashboardController {
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='bank'");
             while (root.dbConnect.resultSet.next()) {
-                bank += Integer.parseInt(root.dbConnect.resultSet.getString(5));
+                bank += Integer.parseInt(root.dbConnect.resultSet.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class DashboardController {
         try {
             root.dbConnect.resultSet = root.dbConnect.statement.executeQuery("SELECT * FROM `account` WHERE `user`=" + root.user.id + " AND `category`='mobile'");
             while (root.dbConnect.resultSet.next()) {
-                mobile += Integer.parseInt(root.dbConnect.resultSet.getString(5));
+                mobile += Integer.parseInt(root.dbConnect.resultSet.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();

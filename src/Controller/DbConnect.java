@@ -14,9 +14,6 @@ public class DbConnect {
 
     public DbConnect() {
         try {
-            // Remote DB | Hostinger
-//            Class.forName("com.mysql.jdbc.Driver");
-//            connection = DriverManager.getConnection("jdbc:mysql://151.106.117.0:3306/u438744503_expenseManager", "u438744503_boruto", "Rasenshurik3n");
             // Local DB | Xampp
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/expensemanager", "root", "");
@@ -39,9 +36,21 @@ public class DbConnect {
                 return true;
             }
         } catch (Exception e){
-            System.out.println(e);
             return  false;
         }
         return false;
+    }
+
+    public Boolean addAccount(Root root, String title, String category, String bank, String balance){
+        String query = "INSERT INTO `account` (`user`, `title`, `category`, `bank`, `type`, `balance`, `created_at`) VALUES ('"+root.user.id+"', '"+title+"', '"+category+"', '"+bank+"', 'debit', '"+balance+"', current_timestamp())";
+//        System.out.println(query);
+        try{
+            int rs = statement.executeUpdate(query);
+            System.out.println(rs);
+        }catch (Exception e){
+            return  false;
+        }
+
+        return true;
     }
 }

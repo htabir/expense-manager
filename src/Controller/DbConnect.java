@@ -25,30 +25,37 @@ public class DbConnect {
     }
 
     public boolean login(Root root, String email, String password) {
-        String query = "SELECT * FROM `user` WHERE `email`='"+ email +"' AND `password`=PASSWORD('"+ password +"')";
+        String query = "SELECT * FROM `user` WHERE `email`='" + email + "' AND `password`=PASSWORD('" + password + "')";
         try {
             resultSet = statement.executeQuery(query);
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 root.user.id = Integer.parseInt(resultSet.getString(1));
                 root.user.name = resultSet.getString(2);
                 root.user.email = resultSet.getString(3);
                 root.user.authenticated = true;
                 return true;
             }
-        } catch (Exception e){
-            return  false;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
         }
         return false;
     }
 
-    public Boolean addAccount(Root root, String title, String category, String bank, String balance){
-        String query = "INSERT INTO `account` (`user`, `title`, `category`, `bank`, `type`, `balance`, `created_at`) VALUES ('"+root.user.id+"', '"+title+"', '"+category+"', '"+bank+"', 'debit', '"+balance+"', current_timestamp())";
-//        System.out.println(query);
-        try{
+    public Boolean addAccount(Root root, String title, String category, String bank, String balance) {
+        String query = "INSERT INTO `account` (`user`, `title`, `category`, `bank`, `type`, `balance`, `created_at`) VALUES ('" + root.user.id + "', '" + title + "', '" + category + "', '" + bank + "', 'debit', '" + balance + "', current_timestamp())";
+        try {
             int rs = statement.executeUpdate(query);
-            System.out.println(rs);
-        }catch (Exception e){
-            return  false;
+            query = "SELECT `id` FROM `account` WHERE `user` = " + root.user.id + " ORDER BY `id` DESC LIMIT 1";
+            resultSet = statement.executeQuery(query);
+            String ac = "";
+            if (resultSet.next()) {
+                ac = resultSet.getString(1);
+            }
+            query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`, `note`, `created_at`) VALUES ('" + root.user.id + "', '" + ac + "', NULL, 'income', 'New Account', '" + balance + "', NULL, current_timestamp())";
+            rs = statement.executeUpdate(query);
+        } catch (Exception e) {
+            return false;
         }
 
         return true;

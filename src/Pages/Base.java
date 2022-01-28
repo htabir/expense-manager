@@ -14,6 +14,7 @@ public class Base {
 
     private Dashboard dashboard;
     private Accounts accounts;
+    private Records records;
 
     public Base(Root root) {
         frame = new Frame();
@@ -28,9 +29,9 @@ public class Base {
         frame.add(dashboard);
         dashboard.setBounds(0, 64, 960, 576);
 
-//        accounts = new Accounts(root);
-//        frame.add(accounts);
-//        accounts.setBounds(0, 64, 960, 576);
+//        records = new Records(root);
+//        frame.add(records);
+//        records.setBounds(0, 64, 960, 576);
 
         initActionListener(root);
 
@@ -55,6 +56,7 @@ public class Base {
             frame.remove(accounts);
         } else if (current == 2) {
             styles.setInactive(navbar.records);
+            frame.remove(records);
         } else if (current == 3) {
             styles.setInactive(navbar.analytics);
         }
@@ -71,6 +73,9 @@ public class Base {
             accounts.setBounds(0, 64, 960, 576);
         } else if (state == 2) {
             styles.setActive(navbar.records);
+            records= new Records(root);
+            frame.add(records);
+            records.setBounds(0, 64, 960, 576);
         } else if (state == 3) {
             styles.setActive(navbar.analytics);
         }

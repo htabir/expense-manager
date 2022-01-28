@@ -35,6 +35,8 @@ public class Base {
 
         initActionListener(root);
 
+        initActionListener(root);
+
         frame.makeDraggable();
         frame.setVisible(true);
     }

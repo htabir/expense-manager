@@ -43,7 +43,7 @@ public class DbConnect {
     }
 
     public Boolean addAccount(Root root, String title, String category, String bank, String balance) {
-        String query = "INSERT INTO `account` (`user`, `title`, `category`, `bank`, `type`, `balance`, `created_at`) VALUES ('" + root.user.id + "', '" + title + "', '" + category + "', '" + bank + "', 'debit', '" + balance + "', current_timestamp())";
+        String query = "INSERT INTO `account` (`user`, `title`, `category`, `bank`, `type`, `balance`, `created_at`) VALUES ('" + root.user.id + "', '" + title + "', LOWER('" + category + "'), '" + bank + "', 'debit', '" + balance + "', current_timestamp())";
         try {
             int rs = statement.executeUpdate(query);
             query = "SELECT `id` FROM `account` WHERE `user` = " + root.user.id + " ORDER BY `id` DESC LIMIT 1";
@@ -52,7 +52,7 @@ public class DbConnect {
             if (resultSet.next()) {
                 ac = resultSet.getString(1);
             }
-            query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`, `note`, `created_at`) VALUES ('" + root.user.id + "', '" + ac + "', NULL, 'income', 'New Account', '" + balance + "', NULL, current_timestamp())";
+            query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`, `note`, `created_at`) VALUES ('" + root.user.id + "', '" + ac + "', NULL, 'income', 'new account', '" + balance + "', NULL, current_timestamp())";
             rs = statement.executeUpdate(query);
         } catch (Exception e) {
             return false;
@@ -61,13 +61,50 @@ public class DbConnect {
         return true;
     }
 
-    public ResultSet fetchAccounts(Root root){
-        String query = "SELECT `id`, `title` FROM `account` WHERE `user`= "+ root.user.id +" AND `status` = 1";
+    public ResultSet fetchAccounts(Root root) {
+        String query = "SELECT `id`, `title` FROM `account` WHERE `user`= " + root.user.id + " AND `status` = 1";
         try {
             resultSet = root.dbConnect.statement.executeQuery(query);
-        } catch (Exception e){
+        } catch (Exception e) {
             resultSet = null;
         }
         return resultSet;
+    }
+
+    public Boolean addRecord(Root root, int account, String type, String category, int transferred_to, String amount) {
+        try {
+            String query;
+            if (transferred_to != -1) {
+                query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`) VALUES ('" + root.user.id + "', '" + account + "', '" + transferred_to + "', LOWER('" + type + "'), LOWER('transfer | withdraw'), '" + amount + "')";
+//                System.out.println(query);
+                int rs = statement.executeUpdate(query);
+                updateAccount(root, account, "-"+amount);
+                updateAccount(root, transferred_to, "+"+amount);
+            } else {
+                query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`) VALUES ('" + root.user.id + "', '" + account + "', NULL, LOWER('" + type + "'), LOWER('" + category + "'), '" + amount + "')";
+//                System.out.println(query);
+                int rs = statement.executeUpdate(query);
+                if(type.contains("Expense")){
+                    updateAccount(root, account, "-"+amount);
+                }else{
+                    updateAccount(root, account, "+"+amount);
+                }
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean updateAccount(Root root, int account, String amount){
+        try{
+            String query = "UPDATE `account` SET `balance` = `balance`"+amount+" WHERE `id` = " + account;
+            int rs = statement.executeUpdate(query);
+        } catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }

@@ -54,17 +54,18 @@ public class Records extends JPanel {
                 parent.add(recordForm);
                 recordForm.setBounds(180, 20, 600, 520);
 
-//                accountForm.addAccount.addActionListener(new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        root.accounts.param = "*";
-//                        if(accountForm.addNewAccount(root)){
-//                            parent.remove(accountForm);
-//                            sideCard.setVisible(true);
-//                            parent.refresh(root);
-//                        }
-//                    }
-//                });
+                recordForm.addRecord.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        root.accounts.param = "*";
+                        System.out.println(recordForm.addNewRecord(root));
+                        if(recordForm.addNewRecord(root)){
+                            parent.remove(recordForm);
+                            sideCard.setVisible(true);
+                            parent.refresh(root);
+                        }
+                    }
+                });
 
                 recordForm.back.addMouseListener(new MouseAdapter() {
                     @Override

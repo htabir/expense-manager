@@ -53,4 +53,8 @@ public class ComboInput extends JPanel {
         this.add(req);
         req.setBounds(x, 0, 8, 20);
     }
+
+    public int getIndex(){
+        return comboBox.getSelectedIndex();
+    }
 }

@@ -2,6 +2,7 @@ package Components.Records;
 
 import Assets.Styles;
 import Cache.Root;
+import Controller.DbConnect;
 import Elements.ComboInput;
 import Elements.ImagePanel;
 import Elements.Input;
@@ -19,6 +20,8 @@ public class RecordForm extends JPanel {
     Input amount;
     ComboInput account, type, category, transferred_to;
     public ImagePanel back;
+    List<Integer> accountIndex;
+    String[] cats;
 
     public RecordForm(Root root) {
         Styles styles = new Styles();
@@ -37,23 +40,23 @@ public class RecordForm extends JPanel {
         back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 
-        List <String> accountList = new ArrayList<String>();
-        List <Integer> accountIndex = new ArrayList<Integer>();
+        List<String> accountList = new ArrayList<String>();
+        accountIndex = new ArrayList<Integer>();
         int size = 0;
 
         ResultSet rs = root.dbConnect.fetchAccounts(root);
-        try{
-            while(rs.next()){
+        try {
+            while (rs.next()) {
                 accountList.add(rs.getString(2));
                 accountIndex.add(Integer.parseInt(rs.getString(1)));
                 size++;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             accountIndex = null;
         }
 
         String[] accounts = new String[size];
-        for(int i=0; i<size; i++){
+        for (int i = 0; i < size; i++) {
             accounts[i] = accountList.get(i);
         }
 
@@ -71,23 +74,36 @@ public class RecordForm extends JPanel {
         add(type);
         type.setBounds(24, 168);
 
+        String[] ex_categories = {"Food", "Shopping", "Transportation", "Entertainment", "Education", "Others"};
+        String[] in_categories = {"Salary", "Prize", "Gift", "Others"};
+        cats = ex_categories;
+
         type.comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(type.getText().contains("Transfer")){
+                if (type.getText().contains("Transfer")) {
                     category.setVisible(false);
                     transferred_to.setVisible(true);
-                }else{
+                } else {
                     transferred_to.setVisible(false);
+                    if (type.getIndex() == 0) {
+                        category.comboBox.setModel(new DefaultComboBoxModel(ex_categories));
+                    } else if (type.getIndex() == 1){
+                        category.comboBox.setModel(new DefaultComboBoxModel(in_categories));
+                    }
                     category.setVisible(true);
                 }
             }
         });
 
 
+//        String[] expense_cats = {};
+//        String[] income_cats = {"Salary", "Prize", "Gift", "Others"};
+//
+//        String[] cats = expense_cats;
 
-        String[] categories = {"Food", "Shopping", "Transportation", "Entertainment", "Education", "Others"};
-        category = new ComboInput(categories);
+
+        category = new ComboInput(ex_categories);
         category.setWidth(552);
         category.setLabel("Category");
         add(category);
@@ -113,26 +129,25 @@ public class RecordForm extends JPanel {
         addRecord.setBounds(24, 452, 552, 48);
     }
 
-//    public boolean addNewAccount(Root root) {
-//        boolean flag = true;
-//        root.dbConnect = new DbConnect();
-//        if (title.isEmpty()) {
-//            flag = false;
-//            title.setDanger();
-//        }else{
-//            title.setDefault();
-//        }
-//        if (balance.isEmpty() || !Pattern.compile("^[0-9]*$").matcher(balance.getText()).find()) {
-//            flag = false;
-//            balance.setDanger();
-//        }else{
-//            balance.setDefault();
-//        }
-//
-//        if (flag){
-//            return root.dbConnect.addAccount(root, title.getText(), category.getText().split("\\s+")[0].toLowerCase(), bank.getText(), balance.getText());
-//        }else{
-//            return false;
-//        }
-//    }
+    public boolean addNewRecord(Root root) {
+        boolean flag = true;
+
+        if (amount.isEmpty() || Integer.parseInt(amount.getText()) == 0) {
+            amount.setDanger();
+            flag = false;
+        } else {
+            amount.setDefault();
+        }
+
+        if (type.getIndex() == 2 && account.getIndex() == transferred_to.getIndex()) {
+            flag = false;
+        }
+
+        if (flag) {
+            root.dbConnect = new DbConnect();
+            return root.dbConnect.addRecord(root, accountIndex.get(account.getIndex()), type.getText(), category.getText(), type.getIndex() == 2 ? accountIndex.get(transferred_to.getIndex()) : -1, amount.getText());
+        } else {
+            return false;
+        }
+    }
 }

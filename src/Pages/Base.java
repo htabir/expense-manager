@@ -15,6 +15,7 @@ public class Base {
     private Dashboard dashboard;
     private Accounts accounts;
     private Records records;
+    private Analytics analytics;
 
     public Base(Root root) {
         frame = new Frame();
@@ -25,15 +26,13 @@ public class Base {
         frame.add(navbar);
         navbar.setBounds(0, 0, 960, 60);
 
-        dashboard = new Dashboard(root);
-        frame.add(dashboard);
-        dashboard.setBounds(0, 64, 960, 576);
+//        dashboard = new Dashboard(root);
+//        frame.add(dashboard);
+//        dashboard.setBounds(0, 64, 960, 576);
 
-//        records = new Records(root);
-//        frame.add(records);
-//        records.setBounds(0, 64, 960, 576);
-
-        initActionListener(root);
+        analytics = new Analytics(root);
+        frame.add(analytics);
+        analytics.setBounds(0, 64, 960, 576);
 
         initActionListener(root);
 
@@ -62,6 +61,7 @@ public class Base {
             frame.remove(records);
         } else if (current == 3) {
             styles.setInactive(navbar.analytics);
+            frame.remove(analytics);
         }
 
         if (state == 0) {
@@ -81,6 +81,9 @@ public class Base {
             records.setBounds(0, 64, 960, 576);
         } else if (state == 3) {
             styles.setActive(navbar.analytics);
+            analytics = new Analytics(root);
+            frame.add(analytics);
+            analytics.setBounds(0, 64, 960, 576);
         } else if (state == 4){
             styles.setActive(navbar.records);
             root.records.state = 0;

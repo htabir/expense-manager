@@ -97,12 +97,6 @@ public class RecordForm extends JPanel {
         });
 
 
-//        String[] expense_cats = {};
-//        String[] income_cats = {"Salary", "Prize", "Gift", "Others"};
-//
-//        String[] cats = expense_cats;
-
-
         category = new ComboInput(ex_categories);
         category.setWidth(552);
         category.setLabel("Category");

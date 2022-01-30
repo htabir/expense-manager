@@ -57,4 +57,8 @@ public class ComboInput extends JPanel {
     public int getIndex(){
         return comboBox.getSelectedIndex();
     }
+
+    public void removeLevel(){
+        this.remove(label);
+    }
 }

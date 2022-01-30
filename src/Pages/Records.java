@@ -58,7 +58,6 @@ public class Records extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         root.accounts.param = "*";
-                        System.out.println(recordForm.addNewRecord(root));
                         if(recordForm.addNewRecord(root)){
                             parent.remove(recordForm);
                             sideCard.setVisible(true);

@@ -60,4 +60,14 @@ public class DbConnect {
 
         return true;
     }
+
+    public ResultSet fetchAccounts(Root root){
+        String query = "SELECT `id`, `title` FROM `account` WHERE `user`= "+ root.user.id +" AND `status` = 1";
+        try {
+            resultSet = root.dbConnect.statement.executeQuery(query);
+        } catch (Exception e){
+            resultSet = null;
+        }
+        return resultSet;
+    }
 }

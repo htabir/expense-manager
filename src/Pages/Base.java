@@ -46,6 +46,7 @@ public class Base {
         navbar.accounts.addActionListener(e -> navigate(1, root));
         navbar.records.addActionListener(e -> navigate(2, root));
         navbar.analytics.addActionListener(e -> navigate(3, root));
+        navbar.add_record.addActionListener(e-> navigate(4, root));
     }
 
 
@@ -80,6 +81,13 @@ public class Base {
             records.setBounds(0, 64, 960, 576);
         } else if (state == 3) {
             styles.setActive(navbar.analytics);
+        } else if (state == 4){
+            styles.setActive(navbar.records);
+            root.records.state = 0;
+            records= new Records(root);
+            frame.add(records);
+            records.setBounds(0, 64, 960, 576);
+            state = 2;
         }
 
         current = state;

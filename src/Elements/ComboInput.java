@@ -7,7 +7,7 @@ import javax.swing.border.LineBorder;
 
 public class ComboInput extends JPanel {
     private JLabel label;
-    private JComboBox comboBox;
+    public JComboBox comboBox;
     private int width;
     public ComboInput(String[] options){
         Styles styles = new Styles();

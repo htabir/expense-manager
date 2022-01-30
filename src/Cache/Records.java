@@ -7,7 +7,8 @@ public class Records {
     public String param;
     public ResultSet list;
     public int total;
-    public Records(){
+
+    public Records() {
         total = 0;
         state = 1;
         param = "*";

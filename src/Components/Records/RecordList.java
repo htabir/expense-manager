@@ -51,7 +51,7 @@ public class RecordList extends JPanel {
                 root.records.total++;
             }
         } catch (Exception e) {
-            //
+
         }
 
         list.setPreferredSize(new Dimension(600, 528 > total_height ? 528 : total_height));

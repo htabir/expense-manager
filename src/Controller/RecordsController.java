@@ -11,7 +11,7 @@ public class RecordsController {
     }
 
     public void fetchRecords(Root root){
-        String query = "SELECT initcap(`record`.`category`), `account`.`title`, `record`.`type`, `record`.`amount` FROM `record` LEFT JOIN `account` on `record`.`account` = `account`.`id` WHERE `record`.`user` = 1";
+        String query = "SELECT initcap(`record`.`category`), `account`.`title`, `record`.`type`, `record`.`amount` FROM `record` LEFT JOIN `account` on `record`.`account` = `account`.`id` WHERE `record`.`user` = " + root.user.id;
 
         try {
             root.records.list = root.dbConnect.statement.executeQuery(query);

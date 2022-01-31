@@ -77,6 +77,22 @@ public class Records extends JPanel {
                 });
             }
         });
+
+        sideCard.expense.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                root.records.param="expense";
+                refresh(root);
+            }
+        });
+
+        sideCard.income.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                root.records.param="income";
+                refresh(root);
+            }
+        });
     }
 
     public void refresh(Root root) {

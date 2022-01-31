@@ -26,13 +26,13 @@ public class Base {
         frame.add(navbar);
         navbar.setBounds(0, 0, 960, 60);
 
-//        dashboard = new Dashboard(root);
-//        frame.add(dashboard);
-//        dashboard.setBounds(0, 64, 960, 576);
+        dashboard = new Dashboard(root);
+        frame.add(dashboard);
+        dashboard.setBounds(0, 64, 960, 576);
 
-        analytics = new Analytics(root);
-        frame.add(analytics);
-        analytics.setBounds(0, 64, 960, 576);
+//        analytics = new Analytics(root);
+//        frame.add(analytics);
+//        analytics.setBounds(0, 64, 960, 576);
 
         initActionListener(root);
 

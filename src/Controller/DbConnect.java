@@ -26,6 +26,7 @@ public class DbConnect {
 
     public boolean login(Root root, String email, String password) {
         String query = "SELECT * FROM `user` WHERE `email`='" + email + "' AND `password`=PASSWORD('" + password + "')";
+        System.out.println(query);
         try {
             resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
@@ -37,6 +38,17 @@ public class DbConnect {
             }
         } catch (Exception e) {
             System.out.println(e);
+            return false;
+        }
+        return false;
+    }
+
+    public boolean register(Root root, String name, String email, String password) {
+        String query = "INSERT INTO `user` (`name`, `email`, `password`) VALUES ('" + name + "', '" + email + "', PASSWORD('"+password+"'))";
+        try {
+            int rs = statement.executeUpdate(query);
+            login(root, email, password);
+        } catch (Exception e) {
             return false;
         }
         return false;
@@ -78,16 +90,16 @@ public class DbConnect {
                 query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`) VALUES ('" + root.user.id + "', '" + account + "', '" + transferred_to + "', LOWER('" + type + "'), LOWER('transfer | withdraw'), '" + amount + "')";
 //                System.out.println(query);
                 int rs = statement.executeUpdate(query);
-                updateAccount(root, account, "-"+amount);
-                updateAccount(root, transferred_to, "+"+amount);
+                updateAccount(root, account, "-" + amount);
+                updateAccount(root, transferred_to, "+" + amount);
             } else {
                 query = "INSERT INTO `record` (`user`, `account`, `transfered_to`, `type`, `category`, `amount`) VALUES ('" + root.user.id + "', '" + account + "', NULL, LOWER('" + type + "'), LOWER('" + category + "'), '" + amount + "')";
 //                System.out.println(query);
                 int rs = statement.executeUpdate(query);
-                if(type.contains("Expense")){
-                    updateAccount(root, account, "-"+amount);
-                }else{
-                    updateAccount(root, account, "+"+amount);
+                if (type.contains("Expense")) {
+                    updateAccount(root, account, "-" + amount);
+                } else {
+                    updateAccount(root, account, "+" + amount);
                 }
             }
 
@@ -98,11 +110,11 @@ public class DbConnect {
         return true;
     }
 
-    public boolean updateAccount(Root root, int account, String amount){
-        try{
-            String query = "UPDATE `account` SET `balance` = `balance`"+amount+" WHERE `id` = " + account;
+    public boolean updateAccount(Root root, int account, String amount) {
+        try {
+            String query = "UPDATE `account` SET `balance` = `balance`" + amount + " WHERE `id` = " + account;
             int rs = statement.executeUpdate(query);
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;

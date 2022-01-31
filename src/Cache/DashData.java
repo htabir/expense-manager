@@ -4,9 +4,12 @@ public class DashData {
     public int cash;
     public int bank;
     public int mobile;
-//    public Timestamp updated_at;
+    public int income;
+    public int expense;
+    public int income_old;
+    public int expense_old;
 
-//    public DashData(){
-//        updated_at.setTime(System.currentTimeMillis());
-//    }
+    public DashData(){
+        income = expense = income_old = expense_old = 0;
+    }
 }

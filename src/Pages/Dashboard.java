@@ -31,7 +31,8 @@ public class Dashboard extends JPanel {
         add(card3);
         card3.setBounds(648, 24, 288, 80);
 
-        CashFlowCard cashFlowCard = new CashFlowCard();
+
+        CashFlowCard cashFlowCard = new CashFlowCard(root);
         add(cashFlowCard);
         cashFlowCard.setBounds(24, 128, 444, 296);
 

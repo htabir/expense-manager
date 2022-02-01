@@ -11,6 +11,7 @@ public class DashboardController {
         countTotalBank(root);
         countTotalMobile(root);
         calculateCashFlow(root);
+        fetchLatestRecords(root);
     }
 
     public void countTotalCash(Root root) {
@@ -76,6 +77,15 @@ public class DashboardController {
 
         } catch (Exception e) {
             System.out.println("failed");
+        }
+    }
+
+    public void fetchLatestRecords(Root root) {
+        try {
+            String query = "SELECT initcap(`record`.`category`), `account`.`title`, `record`.`type`, `record`.`amount` FROM `record` LEFT JOIN `account` on `record`.`account` = `account`.`id` WHERE `record`.`user` = '" + root.user.id + "'  ORDER BY `record`.`id` DESC LIMIT 5";
+            root.dash.recordSet = root.dbConnect.statement.executeQuery(query);
+        } catch (Exception e) {
+            root.dash.recordSet = null;
         }
     }
 

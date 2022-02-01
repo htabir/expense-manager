@@ -18,7 +18,6 @@ public class AnalyticsController {
             query += " AND LOWER(`type`) = 'income'";
         }
         query += " GROUP BY `category`";
-        System.out.println(query);
         try {
             root.analytics.list = root.dbConnect.statement.executeQuery(query);
         } catch (SQLException e) {

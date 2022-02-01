@@ -19,6 +19,7 @@ public class Auth {
     private int state;
 
     public Auth(Root root) {
+        root = new Root();
         frame = new Frame();
         state = 1;
         Styles styles = new Styles();
@@ -83,19 +84,7 @@ public class Auth {
                     registerPanel.setBounds(597, 80, 326, 528);
                     frame.add(registerPanel);
 
-                    registerPanel.sign_in.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            System.out.println("here");
-                            registerPanel.tryRegister(root);
-                            if (root.user.isAuthenticated()) {
-                                new Base(root);
-                                frame.dispose();
-                            } else {
-                                loginPanel.setDanger();
-                            }
-                        }
-                    });
+                    register(root);
 
                     login_signin.setText("Already Have an Account? Login");
                 } else {
@@ -103,6 +92,7 @@ public class Auth {
                     loginPanel = new Login(root);
                     loginPanel.setBounds(597, 80, 326, 528);
                     frame.add(loginPanel);
+                    login(root);
                     login_signin.setText("Create an Account");
                 }
                 state = (state + 1) % 2;
@@ -111,10 +101,30 @@ public class Auth {
             }
         });
 
+        login(root);
+    }
+
+    public void login(Root root){
         loginPanel.login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loginPanel.tryLogin(root);
+                if (root.user.isAuthenticated()) {
+                    new Base(root);
+                    frame.dispose();
+                } else {
+                    loginPanel.setDanger();
+                }
+            }
+        });
+    }
+
+    public void register(Root root){
+        registerPanel.sign_in.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("here");
+                registerPanel.tryRegister(root);
                 if (root.user.isAuthenticated()) {
                     new Base(root);
                     frame.dispose();

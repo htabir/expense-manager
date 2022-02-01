@@ -5,9 +5,11 @@ import Cache.Root;
 import Elements.ImagePanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Navbar extends JPanel {
     public JButton dashboard, accounts, records, analytics, add_record;
+    public ImagePanel logout;
     public Navbar(Root root){
         Styles styles = new Styles();
         setLayout(null);
@@ -46,10 +48,11 @@ public class Navbar extends JPanel {
         add(add_record);
         add_record.setBounds(692, 16, 128, 32);
 
-        ImagePanel user = new ImagePanel("D:\\kodes\\Java\\New folder\\ExpenseManager\\src\\Assets\\image\\user.png", 24, 24);
-        user.setBounds(692+128+32, 20, 24, 24);
-        user.setBackground(styles.white);
-        add(user);
+        logout = new ImagePanel("D:\\kodes\\Java\\New folder\\ExpenseManager\\src\\Assets\\image\\logout.png", 24, 24);
+        logout.setBounds(692+128+32, 18, 24, 24);
+        logout.setBackground(styles.white);
+        logout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        add(logout);
 
     }
 }

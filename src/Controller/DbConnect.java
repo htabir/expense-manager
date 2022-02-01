@@ -26,7 +26,7 @@ public class DbConnect {
 
     public boolean login(Root root, String email, String password) {
         String query = "SELECT * FROM `user` WHERE `email`='" + email + "' AND `password`=PASSWORD('" + password + "')";
-        System.out.println(query);
+//        System.out.println(query);
         try {
             resultSet = statement.executeQuery(query);
             if (resultSet.next()) {

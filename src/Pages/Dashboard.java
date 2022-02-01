@@ -36,7 +36,7 @@ public class Dashboard extends JPanel {
         add(cashFlowCard);
         cashFlowCard.setBounds(24, 128, 444, 296);
 
-        RecentRecordsCard recentRecordsCard = new RecentRecordsCard();
+        RecentRecordsCard recentRecordsCard = new RecentRecordsCard(root);
         add(recentRecordsCard);
         recentRecordsCard.setBounds(492, 128, 444, 296);
     }

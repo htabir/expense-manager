@@ -5,6 +5,9 @@ import Cache.Root;
 import Components.Navbar;
 import Elements.Frame;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class Base {
     private int current;
 
@@ -46,6 +49,14 @@ public class Base {
         navbar.records.addActionListener(e -> navigate(2, root));
         navbar.analytics.addActionListener(e -> navigate(3, root));
         navbar.add_record.addActionListener(e-> navigate(4, root));
+        navbar.logout.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                frame.dispose();
+                new Auth(root);
+            }
+        });
     }
 
 
